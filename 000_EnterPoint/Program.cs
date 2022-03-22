@@ -16,19 +16,19 @@ namespace _000_EnterPoint
                 arrayBills[i] = new BillBank(Convert.ToDouble(i * 100));
                 arrayBills[i].InfoPrint();
             }
+            {
+                Console.WriteLine("\n\t\t Now enroll money (500 BTC)"); Console.ReadKey();
+                arrayBills[0].EnrollMoney(500); arrayBills[0].InfoPrint();
 
+                Console.WriteLine("\n\t\t Now try windraw money ..(1000 BTC) "); Console.ReadKey();
+                arrayBills[0].WithdrawMoney(1000); arrayBills[0].InfoPrint();
 
-            Console.WriteLine("\n\t\t Now enroll money (500 BTC)"); Console.ReadKey();
-            arrayBills[0].EnrollMoney(500); arrayBills[0].InfoPrint();
+                Console.WriteLine("\n\t\t Now try windraw money ..(300 BTC) "); Console.ReadKey();
+                arrayBills[0].WithdrawMoney(300); arrayBills[0].InfoPrint();
 
-            Console.WriteLine("\n\t\t Now try windraw money ..(1000 BTC) "); Console.ReadKey();
-            arrayBills[0].WithdrawMoney(1000); arrayBills[0].InfoPrint();
-
-            Console.WriteLine("\n\t\t Now try windraw money ..(300 BTC) "); Console.ReadKey();
-            arrayBills[0].WithdrawMoney(300); arrayBills[0].InfoPrint();
-
-            Console.WriteLine("\n\t\t Bye! Have nice day!"); Console.ReadKey();
-            Console.ReadKey();
+                Console.WriteLine("\n\t\t Bye! Have nice day!"); Console.ReadKey();
+                Console.ReadKey();
+            }
         }
     }
 }

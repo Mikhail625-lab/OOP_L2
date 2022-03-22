@@ -20,8 +20,6 @@ namespace _010_Task01
             }
         }
 
-
-
         //  ? readonly ? 
         private  ulong bankAccount;
         public ulong BankAccount
@@ -83,7 +81,6 @@ namespace _010_Task01
             System.Console.WriteLine();
 
         }
-
 
         /*
          * Переопределить конструктор по умолчанию, создать :
