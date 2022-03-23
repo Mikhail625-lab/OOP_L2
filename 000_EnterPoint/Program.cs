@@ -7,15 +7,31 @@ namespace _000_EnterPoint
     {
         static void Main(string[] args)
         {
+            int qtyAccounts = 5;
             Console.WriteLine("Run Task_01");
             //Console.ReadKey();
-            BillBank[] arrayBills = new BillBank[3];
+            BillBank[] arrayBills = new BillBank[qtyAccounts];
 
+
+            /*
+ * Переопределить конструктор по умолчанию, создать :
+    1. [БАЛАНС]     конструктор для заполнения поля баланс, 
+    2. [ТИП СЧЁТА]  конструктор для заполнения поля тип банковского счета, 
+    3. [БАЛАНС + ТИП] конструктор для заполнения баланса и типа банковского счета. 
+ */
+
+            // generate accounts with construcor 1 [БАЛАНС]
             for (int i = 0; i < arrayBills.Length; i++)
             {
                 arrayBills[i] = new BillBank(Convert.ToDouble(i * 100));
                 arrayBills[i].InfoPrint();
             }
+
+
+
+
+
+
             {
                 Console.WriteLine("\n\t\t Now enroll money (500 BTC)"); Console.ReadKey();
                 arrayBills[0].EnrollMoney(500); arrayBills[0].InfoPrint();

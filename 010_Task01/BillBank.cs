@@ -20,8 +20,9 @@ namespace _010_Task01
             }
         }
 
-        //  ? readonly ? 
-        private  ulong bankAccount;
+
+        //  ? may be readonly ? 
+        private ulong bankAccount;
         public ulong BankAccount
         {
             get { return bankAccount; }
@@ -32,18 +33,21 @@ namespace _010_Task01
             }
         }
 
+
         private double balance;
         public double Balance { get { return balance; } set { balance = value; } } // short record краткая запись геттера сеттера 
 
-        private typesBankAccount typeBA;
-        private enum typesBankAccount  // тип(ы) счета (использовать перечислимый тип) 
+
+        private TypesBankAccount typeBA;
+        public TypesBankAccount TypeBA { get { return typeBA; } set { typeBA = value; } } // short record краткая запись геттера сеттера 
+        public enum TypesBankAccount : byte// тип(ы) счета (использовать перечислимый тип) 
         {
-            card, // карточный
-            credit, // кредитный
-            budget, // бюджетный
-            current, // текущий
-            currency, // валютный
-            temporary // временный 
+            Card, // карточный
+            Credit, // кредитный
+            Budget, // бюджетный
+            Current, // текущий
+            Currency, // валютный
+            Temporary // временный 
         }
 
         public enum curensy
@@ -57,6 +61,7 @@ namespace _010_Task01
             BDT, WST, KZT, MNT, MRO, AWG, HUF, BIF, GNF, DJF, KMF, CDF, RWF, CHF, XPF, XOF, XAF, GBP, GIP, EGP, LBP,
             SHP, SYP, SDG, FKP, ILS, KES, SOS, TZS, UGX, CVE, CNY
         }
+
 
         public void InfoPrint()
         {
@@ -84,22 +89,50 @@ namespace _010_Task01
 
         /*
          * Переопределить конструктор по умолчанию, создать :
-            1. конструктор для заполнения поля баланс, 
-            2. конструктор для заполнения поля тип банковского счета, 
-            3. конструктор для заполнения баланса и типа банковского счета. 
+            1. [БАЛАНС]     конструктор для заполнения поля баланс, 
+            2. [ТИП СЧЁТА]  конструктор для заполнения поля тип банковского счета, 
+            3. [БАЛАНС + ТИП] конструктор для заполнения баланса и типа банковского счета. 
          */
-        public BillBank() // constructor 1
+        public BillBank() // constructor 0
         {
             GenerateBankAccount();
-            typesBankAccount typeBA = typesBankAccount.card;
-        }
 
-        public BillBank(double summBalance) // constructor 1
+        }
+        /// <summary>
+        ///  constructor 1 [БАЛАНС] 
+        /// </summary>
+        /// <param name="summBalance"></param>
+        public BillBank(double summBalance) //
         {
             GenerateBankAccount();
             Balance = summBalance;
         }
 
+        /// <summary>
+        /// constructor 2 [ТИП СЧЁТА]
+        /// </summary>
+        /// <param name="setTypes"></param>
+        public BillBank(TypesBankAccount setTypes) // 
+        {
+            GenerateBankAccount();
+            TypesBankAccount typeBA = setTypes;
+        }
+        /// <summary>
+        /// constructor 3  [БАЛАНС + ТИП СЧЁТА]
+        /// </summary>
+        /// <param name="summBalance"></param>
+        /// <param name="setTypes"></param>
+        public BillBank(double summBalance, TypesBankAccount setTypes)
+        {
+            GenerateBankAccount();
+            balance = summBalance;
+            TypesBankAccount typeBA = setTypes;
+        }
+
+
+        /// <summary>
+        ///     Создание номера счёта . Приращение\инкремент на 1
+        /// </summary>
         void GenerateBankAccount() => bankAccount = ++TotalCount; //(expression-bodied method) метод сжатый до выражения (C#8.0 карманный саправочник Албахари стр.78)
 
         private bool IsValidBankAccount(ulong bankAccount)
@@ -109,23 +142,34 @@ namespace _010_Task01
         }
 
 
-        // положить\зачислить :
+        /// <summary>
+        /// положить\зачислить на счёт :
+        /// </summary>
+        /// <param name="summ"></param>
         public void EnrollMoney(double summ) => this.Balance += summ;
 
-
-        // снятие :
+        /// <summary>
+        ///     снятие со счёта с проверко доступного остатка :
+        /// </summary>
+        /// <param name="summ"></param>
         public void WithdrawMoney(double summ)
         {
             if (this.Balance >= summ) { this.Balance -= summ; }
-            else {
-                System.Console.ForegroundColor = ConsoleColor.Red; 
+            else
+            {
+                Console.WriteLine("\t----------------------------------------");
+                System.Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\t Error!! The amount exceeds the balance.\n\t\t Operation cannot be performed");
                 System.Console.ForegroundColor = ConsoleColor.Gray;
             }
-
+            Console.WriteLine("\t----------------------------------------");
         }
 
 
-    } // end of class BillBank
 
+
+
+    } // end of class BillBank
 }
+
+
