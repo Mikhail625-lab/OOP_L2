@@ -39,28 +39,10 @@ namespace _010_Task01
 
 
         private TypesBankAccount typeBA;
-        public TypesBankAccount TypeBA { get { return typeBA; } set { typeBA = value; } } // short record краткая запись геттера сеттера 
-        public enum TypesBankAccount : byte// тип(ы) счета (использовать перечислимый тип) 
-        {
-            Card, // карточный
-            Credit, // кредитный
-            Budget, // бюджетный
-            Current, // текущий
-            Currency, // валютный
-            Temporary // временный 
-        }
-
-        public enum curensy
-        {
-            MGA, AFN, PAB, THB, VEF, BOB, ETB, VUV, KPW, KRW, UAH, PYG, ANG, HTG, GMD, MKD, DZD, BHD, JOD, IQD, KWD,
-            LYD, RSD, TND, MAD, AED, STN, AUD, BSD, BBD, BZD, BMD, BND, XCD, GYD, HKD, ZWD, KYD, CAD, LRD, NAD, NZD,
-            SGD, SBD, USD, SRD, TWD, TTD, FJD, JMD, VND, AMD, EUR, PLN, JPY, AOA, ZMK, MWK, GTQ, PGK, LAK, CRC, NIO,
-            DKK, ISK, NOK, CZK, SEK, HRK, MMK, GEL, LVL, BGN, MDL, RON, ALL, HNL, SLL, SZL, TRY, LTL, LSL, AZN, TMТ,
-            BAM, MZN, NGN, ERN, BTN, TOP, MOP, ARS, DOP, COP, CUP, MXN, UYU, PHP, CLP, BWP, BRL, IRR, YER, QAR, OMR,
-            KHR, MYR, SAR, BYR, BYN, RUB, RUR, INR, IDR, MUR, NPR, PKR, SCR, LKR, MVR, ZAR, GHS, PEN, KGS, TJS, UZS,
-            BDT, WST, KZT, MNT, MRO, AWG, HUF, BIF, GNF, DJF, KMF, CDF, RWF, CHF, XPF, XOF, XAF, GBP, GIP, EGP, LBP,
-            SHP, SYP, SDG, FKP, ILS, KES, SOS, TZS, UGX, CVE, CNY
-        }
+        public TypesBankAccount TypeBA 
+        { get { return typeBA; } 
+            set { typeBA = value; }
+        } // TypesBankAccount type = TypesBankAccount.Contractor ;
 
 
         public void InfoPrint()
@@ -74,7 +56,7 @@ namespace _010_Task01
             System.Console.Write("\t {0}: ", "type");
             System.Console.ForegroundColor = ConsoleColor.Gray;
             // System.Console.Write("{0}", Enum.GetName(typeof(typesBankAccount), typeBA));
-            System.Console.Write("{0}", typeBA);
+            System.Console.Write("{0}", TypeBA);
 
 
             System.Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -104,29 +86,30 @@ namespace _010_Task01
         /// <param name="summBalance"></param>
         public BillBank(double summBalance) //
         {
-            GenerateBankAccount();
-            Balance = summBalance;
+            this.GenerateBankAccount();
+            this.Balance = summBalance;
         }
 
         /// <summary>
         /// constructor 2 [ТИП СЧЁТА]
         /// </summary>
         /// <param name="setTypes"></param>
-        public BillBank(TypesBankAccount setTypes) // 
+        public BillBank(string nameType) //  
         {
             GenerateBankAccount();
-            TypesBankAccount typeBA = setTypes;
+            this.TypeBA = (TypesBankAccount)Enum.Parse(typeof(TypesBankAccount), nameType);
         }
+
         /// <summary>
         /// constructor 3  [БАЛАНС + ТИП СЧЁТА]
         /// </summary>
         /// <param name="summBalance"></param>
         /// <param name="setTypes"></param>
-        public BillBank(double summBalance, TypesBankAccount setTypes)
+        public BillBank(double summBalance, string nameType )
         {
-            GenerateBankAccount();
-            balance = summBalance;
-            TypesBankAccount typeBA = setTypes;
+            this.GenerateBankAccount();
+            this.Balance = summBalance;
+            this.typeBA =(TypesBankAccount) Enum.Parse(typeof(TypesBankAccount), nameType);
         }
 
 
@@ -166,10 +149,39 @@ namespace _010_Task01
         }
 
 
-
+        // public void SetType(TypesBankAccount t, string s) => Enum.TryParse(s, out t);
 
 
     } // end of class BillBank
-}
+
+
+    /// <summary>
+    ///     Коллекция существующих валют. Сделано для экпериментов. Не могу разобраться где (лучше) объявить
+    /// </summary>
+    public enum curensy
+    {
+        MGA, AFN, PAB, THB, VEF, BOB, ETB, VUV, KPW, KRW, UAH, PYG, ANG, HTG, GMD, MKD, DZD, BHD, JOD, IQD, KWD,
+        LYD, RSD, TND, MAD, AED, STN, AUD, BSD, BBD, BZD, BMD, BND, XCD, GYD, HKD, ZWD, KYD, CAD, LRD, NAD, NZD,
+        SGD, SBD, USD, SRD, TWD, TTD, FJD, JMD, VND, AMD, EUR, PLN, JPY, AOA, ZMK, MWK, GTQ, PGK, LAK, CRC, NIO,
+        DKK, ISK, NOK, CZK, SEK, HRK, MMK, GEL, LVL, BGN, MDL, RON, ALL, HNL, SLL, SZL, TRY, LTL, LSL, AZN, TMТ,
+        BAM, MZN, NGN, ERN, BTN, TOP, MOP, ARS, DOP, COP, CUP, MXN, UYU, PHP, CLP, BWP, BRL, IRR, YER, QAR, OMR,
+        KHR, MYR, SAR, BYR, BYN, RUB, RUR, INR, IDR, MUR, NPR, PKR, SCR, LKR, MVR, ZAR, GHS, PEN, KGS, TJS, UZS,
+        BDT, WST, KZT, MNT, MRO, AWG, HUF, BIF, GNF, DJF, KMF, CDF, RWF, CHF, XPF, XOF, XAF, GBP, GIP, EGP, LBP,
+        SHP, SYP, SDG, FKP, ILS, KES, SOS, TZS, UGX, CVE, CNY
+    }
+
+
+    public enum TypesBankAccount : byte// тип(ы) счета (использовать перечислимый тип) 
+    {
+        Temporary,// временный 
+        Currency, // валютный
+        Current, // текущий
+        Credit, // кредитный
+        Budget,// бюджетный
+        Card  // карточный
+    }
+
+
+} // end of namespace of _010_Task01
 
 
