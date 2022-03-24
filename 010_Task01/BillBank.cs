@@ -41,7 +41,9 @@ namespace _010_Task01
             set { typeBA = value; }
         } // TypesBankAccount type = TypesBankAccount.Contractor ;
 
-
+        /// <summary>
+        /// Print all information about bank account
+        /// </summary>
         public void InfoPrint()
         {
             System.Console.ForegroundColor = ConsoleColor.DarkGreen;

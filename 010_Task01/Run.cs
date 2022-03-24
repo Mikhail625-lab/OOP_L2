@@ -16,54 +16,69 @@ namespace _010_Task01
 
         public void Run()
         {
-            string lineDivided = "________________________________\n"; 
+            string lineDivided = "________________________________\n";
             BillBank[] arrayBills = new BillBank[TotalQtyAccounts];
-            
+
 
             // generate accounts with construcor 1 [БАЛАНС]
             Console.Write("\t   [БАЛАНС]            " + lineDivided);
 
             int j = 0;
-            for (int i = 0; i < arrayBills.Length/3; i++, j++)
+            for (int i = 0; i < arrayBills.Length / 3; i++, j++)
             {
-                arrayBills[j] = new BillBank(Convert.ToDouble(i * 200) );
+                arrayBills[j] = new BillBank(Convert.ToDouble(i * 200));
                 arrayBills[j].InfoPrint();
             }
 
             // generate accounts with construcor 2 [ТИП СЧЁТА] 
-            Console.Write("\t   [ТИП СЧЁТА]         " + lineDivided); 
-            for (int i = 0; i < arrayBills.Length/3; i++, j++)
+            Console.Write("\t   [ТИП СЧЁТА]         " + lineDivided);
+            for (int i = 0; i < arrayBills.Length / 3; i++, j++)
             {
                 arrayBills[j] = new BillBank("Budget");
                 arrayBills[j].InfoPrint();
             }
 
 
-            Console.Write("\t   [БАЛАНС+ТИП СЧЁТА]  " + lineDivided); 
+            Console.Write("\t   [БАЛАНС+ТИП СЧЁТА]  " + lineDivided);
             // generate accounts with construcor 3 [БАЛАНС]+ [ТИП СЧЁТА] 
-            for (int i = 0; i < arrayBills.Length/3; i++, j++)
+            for (int i = 0; i < arrayBills.Length / 3; i++, j++)
             {
-                arrayBills[j] = new BillBank(Convert.ToDouble(100 + i * 10), "Credit" );
+                arrayBills[j] = new BillBank(Convert.ToDouble(100 + i * 10), "Credit");
                 arrayBills[j].InfoPrint();
             }
 
 
+            Console.WriteLine("\n\t\t Ok . Now for each bank account trying enroll and withdraw ..."); Console.ReadKey();
 
+            for (int i = 0; i < arrayBills.Length; i++)
             {
-                Console.WriteLine("\n\t\t Now enroll money (500 BTC)"); Console.ReadKey();
-                arrayBills[0].EnrollMoney(500); arrayBills[0].InfoPrint();
+                Console.WriteLine("\n for bank account :"); arrayBills[i].InfoPrint();
 
-                Console.WriteLine("\n\t\t Now try windraw money ..(1000 BTC) "); Console.ReadKey();
-                arrayBills[0].WithdrawMoney(1000); arrayBills[0].InfoPrint();
+                Console.WriteLine("\n Now enroll money (500 BTC)"); Console.ReadKey();
+                arrayBills[i].EnrollMoney(500); arrayBills[i].InfoPrint();
 
-                Console.WriteLine("\n\t\t Now try windraw money ..(300 BTC) "); Console.ReadKey();
-                arrayBills[0].WithdrawMoney(300); arrayBills[0].InfoPrint();
+                Console.WriteLine("\n Now try withdraw money ..(1000 BTC) "); Console.ReadKey();
+                arrayBills[i].WithdrawMoney(1000); arrayBills[i].InfoPrint();
 
-                Console.WriteLine("\n\t\t Bye! Have nice day!"); Console.ReadKey();
-                Console.ReadKey();
+                Console.WriteLine("\n Now try withdraw money ..(300 BTC) "); Console.ReadKey();
+                arrayBills[i].WithdrawMoney(300); arrayBills[i].InfoPrint();
+
+                Console.WriteLine("\n For abort - pres key [ESC]");
+                if (Console.ReadKey().Key == ConsoleKey.Escape) { break; }
+
             }
+            
+            
+            Console.WriteLine("\n\t\t Bye! Have nice day!"); Console.ReadKey();
+            Console.ReadKey();
 
         }
+
+
+
+
+
+
 
 
 
