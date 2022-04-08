@@ -29,6 +29,9 @@ namespace _000_EnterPoint
                 Console.WriteLine("\n\t\t Bye! Have nice day!"); Console.ReadKey();
                 Console.ReadKey();
             }
+            arrayBills[3].Transfer(arrayBills[0] , 5);
+
+
         }
     }
 }

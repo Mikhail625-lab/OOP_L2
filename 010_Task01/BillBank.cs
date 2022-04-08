@@ -21,7 +21,7 @@ namespace _010_Task01
         }
 
         //  ? readonly ? 
-        private  ulong bankAccount;
+        private ulong bankAccount;
         public ulong BankAccount
         {
             get { return bankAccount; }
@@ -117,11 +117,32 @@ namespace _010_Task01
         public void WithdrawMoney(double summ)
         {
             if (this.Balance >= summ) { this.Balance -= summ; }
-            else {
-                System.Console.ForegroundColor = ConsoleColor.Red; 
+            else
+            {
+                System.Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\t Error!! The amount exceeds the balance.\n\t\t Operation cannot be performed");
                 System.Console.ForegroundColor = ConsoleColor.Gray;
             }
+
+        }
+
+
+        // снятие со счёта
+        public void Transfer(ref BillBank accountDonor, double sum)
+
+        {// wish : run transaction
+
+            // снять денежные средства zx
+            accountDonor.Balance -= sum;
+
+            // начислить увеличить баланс  
+            Balance += sum;
+
+            // for test and debug ; must delete :
+            System.Console.ReadKey();
+            accountDonor.InfoPrint();
+            this.InfoPrint();
+            System.Console.ReadKey();
 
         }
 
